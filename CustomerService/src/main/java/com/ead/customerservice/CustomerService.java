@@ -152,6 +152,9 @@ public class CustomerService {
                 }
                 ObjectMapper objectMapper = new ObjectMapper();
                 Product productDetails = objectMapper.readValue(productResponse.getBody(), Product.class);
+                if(cartItem.getQuantity() <1){
+                    return ResponseEntity.badRequest().body("Invalid quantity");
+                }
                 if(productDetails.getQuantity() < cartItem.getQuantity()){
                     return ResponseEntity.badRequest().body("Product quantity is not enough");
                 }
@@ -188,6 +191,9 @@ public class CustomerService {
                 }
                 ObjectMapper objectMapper = new ObjectMapper();
                 Product productDetails = objectMapper.readValue(productResponse.getBody(), Product.class);
+                if(cartItem.getQuantity() <1){
+                    return ResponseEntity.badRequest().body("Invalid quantity");
+                }
                 if(productDetails.getQuantity() < cartItem.getQuantity()){
                     return ResponseEntity.badRequest().body("Product quantity is not enough");
                 }
